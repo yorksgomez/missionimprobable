@@ -1,7 +1,9 @@
 import java.util.Arrays;
 
 public class Mission {
-
+    
+    /** ---- Variables ---- **/
+    
     private int length, width, stolen;
     private int[][] base, idea;
     private boolean visible;
@@ -9,6 +11,10 @@ public class Mission {
     private WareHouseZone warehouse;
     private PlanZone plan;
     private ResultZone result;
+    
+    /**
+     * Constructor for objects of class Mission
+     */
     
     public Mission(int length, int width) {
         this.length = length;
@@ -19,6 +25,10 @@ public class Mission {
         
         init();
     }
+    
+    /**
+     * Create the plan zone and result zone and ddd titles, spaces  
+     */
     
     private void init() {
         mainTitle = new Text("Mission Improbable");
@@ -44,7 +54,11 @@ public class Mission {
         
         return newdis;
     }
-
+    
+    /** 
+    *Generate the matrix with front view
+    */
+    
     private int[][] calcFront(int[][] disposition) {
         int maxs[] = new int[disposition[0].length];
         int[][] newdis;
@@ -64,6 +78,11 @@ public class Mission {
         return newdis;
     }
     
+    
+    /** 
+    *Generate the matrix with side view
+    */
+    
     private int[][] calcSide(int[][] disposition) {
         int[] maxs = new int[disposition.length];
         int[][] newdis = new int[disposition.length][disposition[0].length];
@@ -78,9 +97,18 @@ public class Mission {
         return newdis;
     }
     
+    
+    /** 
+    *Return the matrix with top view
+    */
+    
     private int[][] calcTop(int[][] disposition) {
         return disposition;
     }
+    
+    /**
+    * Update all three views, top, side and front
+    */
     
     private void updateWareViews() {
         int[][] front = calcFront(base),
@@ -95,10 +123,27 @@ public class Mission {
         result.changeStolen(stolen);
     }
     
+    /**
+    * Save a box in the warehouse, given by row and column
+    */
+    
     public void store(int row, int column) {
            base[row - 1][column - 1]++;
            updateWareViews();
     }
+    
+     /**
+    * Extract a box of the warehouse, given by row and column
+    */
+    
+    public void steal(int row, int column){
+        base[row-1][column-1]--;
+        updateWareViews();
+    }
+    
+    /**
+    * Generates a copy of the views to be part of the plan
+    */
     
     public void copy() {
         updateStolen(0);
