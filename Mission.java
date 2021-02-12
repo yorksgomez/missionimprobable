@@ -154,9 +154,17 @@ public class Mission {
         plan.getTop().changeDisposition(warehouse.getTop().getDisposition());
     }
     
+    /**
+    * Returns the number of stolen boxes
+    */
+    
     public int stolen() {
         return stolen;   
     }
+    
+    /**
+    * Makes visible the graphic of the boxes and the one of the plan to rob them. Also the title and the number of stolen boxes
+    */
     
     public void makeVisible() {
         visible = true;
@@ -166,7 +174,9 @@ public class Mission {
         plan.makeVisible();
         result.makeVisible();
     }
-    
+    /**
+    * Makes invisible the graphic of the boxes and the one of the plan to rob them. Also the title and the number of stolen boxes
+    */
     public void makeInvisible() {
         mainTitle.makeInvisible();
         warehouse.makeInvisible();
