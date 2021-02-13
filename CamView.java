@@ -1,12 +1,25 @@
-
+/**
+ * Generates a cam view
+ */
 public class CamView {
     
+    /** ---- Variables ---- **/
     private int width, height, x, y, rw, rh;
     private int[][] disposition;
     private Rectangle[][] viewDisposition;
     private boolean visible;
     private Text title;
     
+    /**
+     * Generates a basic CamView
+     * @param x: x position
+     * @param y: y position
+     * @param width: size
+     * @param height: size
+     * @param rows: matrix mission rows
+     * @param columns: matrix mission columns
+     * @param title: name of camview
+     */
     public CamView(int x, int y, int width, int height, int rows, int columns, String title) {
        this.width = width;
        this.height = height;
@@ -37,12 +50,19 @@ public class CamView {
        
     }
     
+    /**
+     * Change camview disposition
+     * @param disposition: matrix to set
+     */
     public void changeDisposition(int[][] disposition) {
         this.disposition = disposition;
         
         updateView();
     }
     
+    /**
+     * update view with new disposition
+     */
     private void updateView() {
         
         for(int i = 0; i < disposition.length; i++) {
@@ -61,10 +81,17 @@ public class CamView {
         
     }
     
+    /**
+     * Gets the disposition
+     * @return CamView disposition
+     */
     public int[][] getDisposition() {
         return disposition;
     }
     
+    /**
+     * Makes cam visible
+     */
     public void makeVisible() {
         
         for(Rectangle[] row : viewDisposition) {
@@ -77,6 +104,9 @@ public class CamView {
         title.makeVisible();
     }
     
+    /**
+     * Makes cam invisible
+     */
     public void makeInvisible() {
         
         for(Rectangle[] row : viewDisposition) {

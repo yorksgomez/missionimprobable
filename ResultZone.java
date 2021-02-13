@@ -1,8 +1,14 @@
-
+/**
+ * Zone with mission improbable information
+ */
 public class ResultZone extends Zone {
 
+    /** ---- Variables ---- **/
     private Text stolenText, wareText, planText;
     
+    /**
+     * Generates a basic result zone
+     */
     public ResultZone() {
         super("Resuts", "white", 480, 170);
         xPosition = 20;
@@ -20,6 +26,9 @@ public class ResultZone extends Zone {
         init();  
     }
     
+    /**
+     * make the zone visible
+     */
     @Override
     public void makeVisible() {
         super.makeVisible();
@@ -29,6 +38,9 @@ public class ResultZone extends Zone {
         planText.makeVisible();
     }
     
+    /**
+     * make the zone invisible
+     */
     @Override
     public void makeInvisible() {
         super.makeInvisible();
@@ -38,18 +50,29 @@ public class ResultZone extends Zone {
         planText.makeInvisible();
     }
     
+    /**
+     * change stolen text
+     * @param stolen: num to put
+     */
     public void changeStolen(int stolen) {
         stolenText.changeValue("Stolen: " + String.valueOf(stolen));   
     }
     
+    /**
+     * change ware text
+     * @param ware: num to put
+     */
     public void changeWare(int ware) {
         wareText.changeValue("Warehouse crates: " + String.valueOf(ware));   
     }
     
+    /**
+     * change plan text
+     * @param plan: num to put
+     */
     public void changePlan(int plan) {
         planText.changeValue("Plan crates: " + String.valueOf(plan));   
     }
-    
 
 }
 

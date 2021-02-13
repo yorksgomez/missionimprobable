@@ -1,18 +1,12 @@
 import java.util.Arrays;
 
+/**
+ * Executes the Mission Improbable game
+ */
 public class Mission {
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-    private int length, width, stolen, warenum, plannum, last[];
-=======
-=======
->>>>>>> 20709cf60b54e2a60bf27557b39b9d4caa5f3e0e
-    
     /** ---- Variables ---- **/
-    
-    private int length, width, stolen;
->>>>>>> 20709cf60b54e2a60bf27557b39b9d4caa5f3e0e
+    private int length, width, stolen, warenum, plannum, last[];
     private int[][] base, idea;
     private boolean visible, ok;
     private Text mainTitle, stolenText;
@@ -26,11 +20,6 @@ public class Mission {
     /**
      * Constructor for objects of class Mission
      */
-    
-    /**
-     * Constructor for objects of class Mission
-     */
-    
     public Mission(int length, int width) {
         this.length = length;
         this.width = width;
@@ -46,7 +35,6 @@ public class Mission {
     /**
      * Create the plan zone and result zone and ddd titles, spaces  
      */
-    
     private void init() {
         mainTitle = new Text("Mission Improbable");
         mainTitle.changeSize(26);
@@ -57,6 +45,13 @@ public class Mission {
         result = new ResultZone();
     }
     
+    /**
+     * Rotate a converted disposition (maxes of a row or column)
+     * @param maxs: list with max values
+     * @param m: size of matrix
+     * @param n: size of matrix
+     * @return maxes converted into a matrix
+     */
     private int[][] rotateDisposition(int[] maxs, int m, int n) {
         int[][] newdis = new int[n][m];
         
@@ -73,9 +68,10 @@ public class Mission {
     }
     
     /** 
-    *Generate the matrix with front view
+    *  Return the matrix with front view
+    *  @param disposition: the current disposition to convert
+    *  @return converted disposition
     */
-    
     private int[][] calcFront(int[][] disposition) {
         int maxs[] = new int[disposition[0].length];
         int[][] newdis;
@@ -97,9 +93,10 @@ public class Mission {
     
     
     /** 
-    *Generate the matrix with side view
+    *  Return the matrix with side view
+    *  @param disposition: the current disposition to convert
+    *  @return converted disposition
     */
-    
     private int[][] calcSide(int[][] disposition) {
         int[] maxs = new int[disposition.length];
         int[][] newdis = new int[disposition.length][disposition[0].length];
@@ -116,9 +113,10 @@ public class Mission {
     
     
     /** 
-    *Return the matrix with top view
+    *  Return the matrix with top view
+    *  @param disposition: the current disposition to convert
+    *  @return converted disposition
     */
-    
     private int[][] calcTop(int[][] disposition) {
         int[][] newdis = new int[disposition.length][disposition[0].length];
         
@@ -136,7 +134,11 @@ public class Mission {
         return newdis;
     }
     
-<<<<<<< HEAD
+    /**
+     * Copy a disposition
+     * @param d: distribution to copy
+     * @return the copy
+     */
     private int[][] copyDisposition(int[][] d) {
         int copy[][] = new int[d.length][];
         
@@ -151,12 +153,9 @@ public class Mission {
         return copy;
     }
     
-=======
->>>>>>> 20709cf60b54e2a60bf27557b39b9d4caa5f3e0e
     /**
-    * Update all three views, top, side and front
+    * Update all three views, top, side and front from WareHouse
     */
-    
     private void updateWareViews() {
         int[][] front = calcFront(base),
                 side = calcSide(base),
@@ -165,6 +164,9 @@ public class Mission {
         warehouse.updateViews(front, side, top);
     }
     
+    /**
+     * Update the plan cameras views
+     */
     private void updatePlanView() {
         int[][] front = calcFront(idea),
                 side = calcSide(idea),
@@ -173,6 +175,12 @@ public class Mission {
         plan.updateViews(front, side, top);
     }
     
+    /**
+     * checks if two dispositions are equal
+     * @param a: first disposition
+     * @param b: second disposition
+     * @return true if the dispositions are equal
+     */
     private boolean areDispositionEqual(int[][] a, int[][] b) {
         
         for(int i = 0; i < a.length; i++) {
@@ -189,12 +197,19 @@ public class Mission {
         return true;
     }
     
+    /**
+     * Checks if warehouse's layout and plan's layout are equivalents
+     * @return true is they're equal
+     */
     private boolean areBaseAndIdeaEquals() {
         return areDispositionEqual(plan.getFront().getDisposition(), warehouse.getFront().getDisposition()) && 
                areDispositionEqual(plan.getSide().getDisposition(), warehouse.getSide().getDisposition()) && 
                areDispositionEqual(plan.getTop().getDisposition(), warehouse.getTop().getDisposition());
     }
     
+    /**
+     * Updates the plan's section background
+     */
     private void updatePlanColor() {
         
         if(areBaseAndIdeaEquals()) {
@@ -206,16 +221,28 @@ public class Mission {
         plan.makeVisible();
     }
     
+    /**
+     * update the stolen num of boxes
+     * @param stolen: num to set
+     */
     private void updateStolen(int stolen) {
         this.stolen = stolen;
         result.changeStolen(stolen);
     }
 
+    /**
+     * update the warehouse num of boxes
+     * @param ware: num to set
+     */
     private void updateWarenum(int ware) {
         this.warenum = ware;
         result.changeWare(ware);
     }
     
+    /**
+     * update the plan num of boxes
+     * @param plan: num to set
+     */
     private void updatePlannum(int plan) {
         this.plannum = plan;
         result.changePlan(plan);
@@ -223,38 +250,26 @@ public class Mission {
     
     /**
     * Save a box in the warehouse, given by row and column
+    * @param row: point of the box
+    * @param column: point of the box
     */
-    
-    /**
-    * Save a box in the warehouse, given by row and column
-    */
-    
-    public void store(int row, int column) {
+   public void store(int row, int column) {
         base[row - 1][column - 1]++;
         updateWarenum(warenum + 1);
         updateWareViews();
     }
     
-<<<<<<< HEAD
+    /**
+    * Save a box in the warehouse, given by row and column
+    * @param crate: position of the box
+    */    
     public void store(int[] crate) {
         store(crate[0], crate[1]);   
-    }
-    
-=======
->>>>>>> 20709cf60b54e2a60bf27557b39b9d4caa5f3e0e
-     /**
-    * Extract a box of the warehouse, given by row and column
-    */
-    
-    public void steal(int row, int column){
-        base[row-1][column-1]--;
-        updateWareViews();
     }
     
     /**
     * Generates a copy of the views to be part of the plan
     */
-    
     public void copy() {
         updateStolen(0);
         updatePlannum(warenum);
@@ -269,8 +284,12 @@ public class Mission {
         plan.getTop().changeDisposition(t);
         updatePlanColor();
     }
-    
-<<<<<<< HEAD
+
+    /**
+    * Extract a box of the plan
+    * @param row: point of the box
+    * @param column: point of the box
+    */
     public void steal(int row, int column) {
         
         if(idea[row - 1][column - 1] > 0) {
@@ -291,10 +310,17 @@ public class Mission {
             
     }
     
+    /**
+     * Steal a box
+     * @param crate: position of the box
+     */
     public void steal(int[] crate) {
         steal(crate[0], crate[1]);   
     }
     
+    /**
+     * Return the last action (steal or arrage) made
+     */
     public void returnCrate() {
         
         if(last[0] == LAST_STEAL) {
@@ -313,6 +339,11 @@ public class Mission {
         last[0] = LAST_NONE;
     }
     
+    /**
+     * Moves a box
+     * @param from: the point where the box is
+     * @param to: the point to put the box
+     */
     public void arrage(int[] from, int[] to) {
         
         if(idea[from[0]][from[1]] > 0) {
@@ -333,36 +364,33 @@ public class Mission {
         
     }
     
-=======
->>>>>>> 20709cf60b54e2a60bf27557b39b9d4caa5f3e0e
     /**
     * Returns the number of stolen boxes
+    * @return int with the number
     */
-    
     public int stolen() {
         return stolen;   
     }
     
-<<<<<<< HEAD
-<<<<<<< HEAD
+    /**
+     * Get the warehouse's layout
+     * @return matrix with warehouse
+     */
     public int[][] warehouse() {
         return base;
     }
     
+    /**
+     * Get the plan's layout
+     * @return matrix with layout
+     */
     public int[][] layout() {
         return idea;   
     }
-=======
+
     /**
     * Makes visible the graphic of the boxes and the one of the plan to rob them. Also the title and the number of stolen boxes
     */
->>>>>>> 20709cf60b54e2a60bf27557b39b9d4caa5f3e0e
-=======
-    /**
-    * Makes visible the graphic of the boxes and the one of the plan to rob them. Also the title and the number of stolen boxes
-    */
->>>>>>> 20709cf60b54e2a60bf27557b39b9d4caa5f3e0e
-    
     public void makeVisible() {
         visible = true;
         
@@ -371,6 +399,7 @@ public class Mission {
         plan.makeVisible();
         result.makeVisible();
     }
+    
     /**
     * Makes invisible the graphic of the boxes and the one of the plan to rob them. Also the title and the number of stolen boxes
     */
@@ -383,10 +412,17 @@ public class Mission {
         visible = false;   
     }
     
+    /**
+     * Stop the mission project
+     */
     public void finish() {
         System.exit(0);
     }
     
+    /**
+     * Returns if an action (steal or arrage) was correct
+     * @return true if it was, false if wasn't
+     */
     public boolean ok() {
         return ok;   
     }

@@ -100,6 +100,12 @@ public class Canvas{
         redraw();
     }
     
+    /**
+     * Draw a given shape onto the canvas.
+     * @param  referenceObject  an object to define identity for this shape
+     * @param  color            the color of the shape
+     * @param  text            the text object to be drawn on the canvas
+     */
     public void draw(Object referenceObject, String color, Text text){
         objects.remove(referenceObject);   // just in case it was already there
         objects.add(referenceObject);      // add at the end

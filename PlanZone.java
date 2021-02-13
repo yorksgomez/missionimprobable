@@ -1,9 +1,17 @@
-
+/**
+ * Zone plan's cam views
+ */
 public class PlanZone extends Zone  {
 
+    /** ---- Variables ---- **/
     private CamView front, side, top;
     private static final int CAM_SIZE = 100, H_STRUT = 40, V_STRUT = 20;
     
+    /**
+     * generates a basic plan zone
+     * @param rows: the rows for the grid
+     * @param columns: the columns for the grid
+     */
     public PlanZone(int rows, int columns) {
         super("Plan", "white", 480, 170);
         xPosition = 20;
@@ -16,24 +24,45 @@ public class PlanZone extends Zone  {
         init();
     }
     
+    /**
+     * Updates cam views
+     * @param front: disposition
+     * @param side: disposition
+     * @param top: disposition
+     */
     public void updateViews(int[][] front, int[][] side, int[][] top) {
         this.front.changeDisposition(front);
         this.side.changeDisposition(side);
         this.top.changeDisposition(top);
     }
     
+    /**
+     * Returns front CamView
+     * @return front CamView
+     */
     public CamView getFront() {
         return front;
     }
     
+    /**
+     * Returns side CamView
+     * @return side CamView
+     */
     public CamView getSide() {
         return side;   
     }
     
+    /**
+     * Returns top CamView
+     * @return top CamView
+     */
     public CamView getTop() {
         return top;   
     }
     
+    /**
+     * makes zone visible
+     */
     @Override
     public void makeVisible() {
         super.makeVisible();
@@ -43,6 +72,9 @@ public class PlanZone extends Zone  {
         top.makeVisible();
     }
     
+    /**
+     * makes zone invisible
+     */
     @Override
     public void makeInvisible() {
         super.makeInvisible();
