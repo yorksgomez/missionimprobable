@@ -1,8 +1,15 @@
 import java.util.Arrays;
 
 public class Mission {
+<<<<<<< HEAD
 
     private int length, width, stolen, warenum, plannum, last[];
+=======
+    
+    /** ---- Variables ---- **/
+    
+    private int length, width, stolen;
+>>>>>>> 20709cf60b54e2a60bf27557b39b9d4caa5f3e0e
     private int[][] base, idea;
     private boolean visible, ok;
     private Text mainTitle, stolenText;
@@ -12,6 +19,10 @@ public class Mission {
     private static final int LAST_NONE = 0,
                              LAST_STEAL = 1,
                              LAST_ARRAGE = 2;
+    
+    /**
+     * Constructor for objects of class Mission
+     */
     
     public Mission(int length, int width) {
         this.length = length;
@@ -24,6 +35,10 @@ public class Mission {
         
         init();
     }
+    
+    /**
+     * Create the plan zone and result zone and ddd titles, spaces  
+     */
     
     private void init() {
         mainTitle = new Text("Mission Improbable");
@@ -49,7 +64,11 @@ public class Mission {
         
         return newdis;
     }
-
+    
+    /** 
+    *Generate the matrix with front view
+    */
+    
     private int[][] calcFront(int[][] disposition) {
         int maxs[] = new int[disposition[0].length];
         int[][] newdis;
@@ -69,6 +88,11 @@ public class Mission {
         return newdis;
     }
     
+    
+    /** 
+    *Generate the matrix with side view
+    */
+    
     private int[][] calcSide(int[][] disposition) {
         int[] maxs = new int[disposition.length];
         int[][] newdis = new int[disposition.length][disposition[0].length];
@@ -82,6 +106,11 @@ public class Mission {
         newdis = rotateDisposition(maxs, disposition.length, disposition[0].length);
         return newdis;
     }
+    
+    
+    /** 
+    *Return the matrix with top view
+    */
     
     private int[][] calcTop(int[][] disposition) {
         int[][] newdis = new int[disposition.length][disposition[0].length];
@@ -113,6 +142,10 @@ public class Mission {
         
         return copy;
     }
+    
+    /**
+    * Update all three views, top, side and front
+    */
     
     private void updateWareViews() {
         int[][] front = calcFront(base),
@@ -178,6 +211,10 @@ public class Mission {
         result.changePlan(plan);
     }
     
+    /**
+    * Save a box in the warehouse, given by row and column
+    */
+    
     public void store(int row, int column) {
         base[row - 1][column - 1]++;
         updateWarenum(warenum + 1);
@@ -187,6 +224,19 @@ public class Mission {
     public void store(int[] crate) {
         store(crate[0], crate[1]);   
     }
+    
+     /**
+    * Extract a box of the warehouse, given by row and column
+    */
+    
+    public void steal(int row, int column){
+        base[row-1][column-1]--;
+        updateWareViews();
+    }
+    
+    /**
+    * Generates a copy of the views to be part of the plan
+    */
     
     public void copy() {
         updateStolen(0);
@@ -265,10 +315,15 @@ public class Mission {
         
     }
     
+    /**
+    * Returns the number of stolen boxes
+    */
+    
     public int stolen() {
         return stolen;   
     }
     
+<<<<<<< HEAD
     public int[][] warehouse() {
         return base;
     }
@@ -276,6 +331,11 @@ public class Mission {
     public int[][] layout() {
         return idea;   
     }
+=======
+    /**
+    * Makes visible the graphic of the boxes and the one of the plan to rob them. Also the title and the number of stolen boxes
+    */
+>>>>>>> 20709cf60b54e2a60bf27557b39b9d4caa5f3e0e
     
     public void makeVisible() {
         visible = true;
@@ -285,7 +345,9 @@ public class Mission {
         plan.makeVisible();
         result.makeVisible();
     }
-    
+    /**
+    * Makes invisible the graphic of the boxes and the one of the plan to rob them. Also the title and the number of stolen boxes
+    */
     public void makeInvisible() {
         mainTitle.makeInvisible();
         warehouse.makeInvisible();
