@@ -2,9 +2,12 @@ import java.util.Arrays;
 
 public class Mission {
 <<<<<<< HEAD
+<<<<<<< HEAD
 
     private int length, width, stolen, warenum, plannum, last[];
 =======
+=======
+>>>>>>> 20709cf60b54e2a60bf27557b39b9d4caa5f3e0e
     
     /** ---- Variables ---- **/
     
@@ -19,6 +22,10 @@ public class Mission {
     private static final int LAST_NONE = 0,
                              LAST_STEAL = 1,
                              LAST_ARRAGE = 2;
+    
+    /**
+     * Constructor for objects of class Mission
+     */
     
     /**
      * Constructor for objects of class Mission
@@ -129,6 +136,7 @@ public class Mission {
         return newdis;
     }
     
+<<<<<<< HEAD
     private int[][] copyDisposition(int[][] d) {
         int copy[][] = new int[d.length][];
         
@@ -143,6 +151,8 @@ public class Mission {
         return copy;
     }
     
+=======
+>>>>>>> 20709cf60b54e2a60bf27557b39b9d4caa5f3e0e
     /**
     * Update all three views, top, side and front
     */
@@ -215,16 +225,23 @@ public class Mission {
     * Save a box in the warehouse, given by row and column
     */
     
+    /**
+    * Save a box in the warehouse, given by row and column
+    */
+    
     public void store(int row, int column) {
         base[row - 1][column - 1]++;
         updateWarenum(warenum + 1);
         updateWareViews();
     }
     
+<<<<<<< HEAD
     public void store(int[] crate) {
         store(crate[0], crate[1]);   
     }
     
+=======
+>>>>>>> 20709cf60b54e2a60bf27557b39b9d4caa5f3e0e
      /**
     * Extract a box of the warehouse, given by row and column
     */
@@ -253,6 +270,7 @@ public class Mission {
         updatePlanColor();
     }
     
+<<<<<<< HEAD
     public void steal(int row, int column) {
         
         if(idea[row - 1][column - 1] > 0) {
@@ -315,6 +333,8 @@ public class Mission {
         
     }
     
+=======
+>>>>>>> 20709cf60b54e2a60bf27557b39b9d4caa5f3e0e
     /**
     * Returns the number of stolen boxes
     */
@@ -324,6 +344,7 @@ public class Mission {
     }
     
 <<<<<<< HEAD
+<<<<<<< HEAD
     public int[][] warehouse() {
         return base;
     }
@@ -331,6 +352,11 @@ public class Mission {
     public int[][] layout() {
         return idea;   
     }
+=======
+    /**
+    * Makes visible the graphic of the boxes and the one of the plan to rob them. Also the title and the number of stolen boxes
+    */
+>>>>>>> 20709cf60b54e2a60bf27557b39b9d4caa5f3e0e
 =======
     /**
     * Makes visible the graphic of the boxes and the one of the plan to rob them. Also the title and the number of stolen boxes
