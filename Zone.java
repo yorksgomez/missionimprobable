@@ -21,6 +21,10 @@ public class Zone {
         title.move(xPosition + 10, yPosition + 20);
     }
     
+    public void changeBackground(String background) {
+        this.background.changeColor(background);   
+    }
+    
     public void makeVisible() {
         visible = true;
         

@@ -16,6 +16,12 @@ public class PlanZone extends Zone  {
         init();
     }
     
+    public void updateViews(int[][] front, int[][] side, int[][] top) {
+        this.front.changeDisposition(front);
+        this.side.changeDisposition(side);
+        this.top.changeDisposition(top);
+    }
+    
     public CamView getFront() {
         return front;
     }

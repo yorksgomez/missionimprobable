@@ -6,7 +6,7 @@ public class WareHouseZone extends Zone {
     private static final int CAM_SIZE = 100, H_STRUT = 40, V_STRUT = 20;
     
     public WareHouseZone(int rows, int columns) {
-        super("Warehouse", "white", 480, 170);
+        super("Warehouse", "gray", 480, 170);
         xPosition = 20;
         yPosition = 60;
         front = new CamView(xPosition + H_STRUT, yPosition + V_STRUT * 2, CAM_SIZE, CAM_SIZE, rows, columns, "Front View");
